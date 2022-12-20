@@ -1,0 +1,62 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" 
+                label="First Name" 
+                value={First_Name} 
+                onchange={handle_First_Name_Change} required>
+            </lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="text" 
+                label="Last Name" 
+                value={Last_Name} 
+                onchange={handle_Last_Name_Change} required>
+            </lightning-input>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-input type="checkbox" 
+                label="Is Active?" 
+                value={Contact_Email} 
+                onchange={handleCheckChange}>
+            </lightning-input>
+        </div> 
+        <div class="slds-p-around_medium lgc-bg" >
+            <lightning-combobox
+                name="Country"
+                label="Gender"
+                value={value}
+                placeholder="Select Gender"
+                options={options}
+                required="true"
+                onchange={handle_Country_Change} >
+            </lightning-combobox>
+        </div>
+        <div class="slds-p-around_medium lgc-bg">
+            <lightning-button label="Save" 
+                onclick={handle_Submit}>
+            </lightning-button>
+
+            <lightning-button
+            class="slds-float_right"
+            type="reset"
+            label="Clear"
+            onclick={handleReset}
+            ></lightning-button>
+        </div>
+            
+        <template if:true = {contacts}> 
+        <div style="height: 300px;">
+            <lightning-datatable
+            data={contacts}
+            columns={columns}
+            key-field="Id"
+            onrowaction={handleRowAction}
+            draft-values={draftValues}
+            onsave={handleSave}
+            hide-checkbox-column="true">
+          </lightning-datatable>
+        </div>   
+        </template>
+    </div>
+</template>
